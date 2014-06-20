@@ -1,0 +1,276 @@
+06-15 12:20:07 jdbc[4]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-178]
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:74)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:684)
+	at org.h2.server.web.WebApp.login(WebApp.java:958)
+	at org.h2.server.web.WebApp.process(WebApp.java:212)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 14 more
+06-15 12:21:26 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Column "INFORMATION_SCHEMA.COLUMNS" not found; SQL statement:
+select INFORMATION_SCHEMA.COLUMNS [42122-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.command.dml.Select.prepare(Select.java:831)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+06-15 12:21:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "INFORMATION_SCHEMA" not found; SQL statement:
+select INFORMATION_SCHEMA.COLUMNS  
+from INFORMATION_SCHEMA [42102-178]
+06-15 12:22:28 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Column "CATEGORY" not found; SQL statement:
+select * from INFORMATION_SCHEMA.COLUMNS  
+where table_name=category [42122-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.expression.Comparison.optimize(Comparison.java:181)
+	at org.h2.command.dml.Select.prepare(Select.java:834)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+06-15 12:29:11 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO category (category, collection_table ,description) VALUES
+	('NEP','NAMES','نام اشخاص'),
+	('NEC','CITIES','شهر'),
+	('NEA',null,'سن'),
+	('NEE','ETHNICITY','قومیت'),
+	('NEM','MARITAL_STATUS','وضعیت تاهل'),
+	('NEK','تعداد فرزندان'),
+	('NEH','HOSPITAL_NAMES','نام بیمارستان') [21002-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.command.dml.Insert.prepare(Insert.java:266)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+06-16 20:13:23 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-178]
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:74)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:684)
+	at org.h2.server.web.WebApp.login(WebApp.java:958)
+	at org.h2.server.web.WebApp.process(WebApp.java:212)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 14 more
+06-19 18:42:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CITY" not found; SQL statement:
+SELECT * FROM `CITY`  [42102-178]
+06-19 18:48:37 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "CITY" not found; SQL statement:
+SELECT * FROM `CITY`  [42102-178]
+06-19 18:51:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CITY" not found; SQL statement:
+SELECT * FROM CITY [42102-178]
+06-19 18:53:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-178]
+06-19 18:53:15 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "CITY" not found; SQL statement:
+SELECT * FROM `CITY`  [42102-178]
+06-19 19:07:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid value "0" for parameter "resultSetType" [90008-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:227)
+	at org.h2.jdbc.JdbcConnection.checkTypeConcurrency(JdbcConnection.java:1412)
+	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:219)
+	at com.j256.ormlite.jdbc.JdbcDatabaseConnection.executeStatement(JdbcDatabaseConnection.java:121)
+	at mera.DatabaseManager.initdb(DatabaseManager.java:132)
+	at Main.main(Main.java:32)
+06-19 19:45:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGROY" not found; SQL statement:
+SELECT * FROM categroy WHERE category='NEP' [42102-178]
+06-19 19:49:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGROY" not found; SQL statement:
+SELECT * FROM categroy WHERE category='NEP' [42102-178]
+06-19 19:50:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "val" not found [42122-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3122)
+	at org.h2.jdbc.JdbcResultSet.findColumn(JdbcResultSet.java:182)
+	at com.j256.ormlite.jdbc.JdbcDatabaseResults.findColumn(JdbcDatabaseResults.java:90)
+	at com.j256.ormlite.field.FieldType.resultToJava(FieldType.java:815)
+	at com.j256.ormlite.stmt.mapped.BaseMappedQuery.mapRow(BaseMappedQuery.java:60)
+	at com.j256.ormlite.stmt.SelectIterator.getCurrent(SelectIterator.java:270)
+	at com.j256.ormlite.stmt.SelectIterator.nextThrow(SelectIterator.java:161)
+	at com.j256.ormlite.stmt.StatementExecutor.query(StatementExecutor.java:202)
+	at com.j256.ormlite.stmt.StatementExecutor.queryForAll(StatementExecutor.java:118)
+	at com.j256.ormlite.dao.BaseDaoImpl.queryForAll(BaseDaoImpl.java:241)
+	at mera.DatabaseManager.getAll(DatabaseManager.java:102)
+	at Main.main(Main.java:33)
+06-19 19:52:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "val" not found [42122-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3122)
+	at org.h2.jdbc.JdbcResultSet.findColumn(JdbcResultSet.java:182)
+	at com.j256.ormlite.jdbc.JdbcDatabaseResults.findColumn(JdbcDatabaseResults.java:90)
+	at com.j256.ormlite.field.FieldType.resultToJava(FieldType.java:815)
+	at com.j256.ormlite.stmt.mapped.BaseMappedQuery.mapRow(BaseMappedQuery.java:60)
+	at com.j256.ormlite.stmt.SelectIterator.getCurrent(SelectIterator.java:270)
+	at com.j256.ormlite.stmt.SelectIterator.nextThrow(SelectIterator.java:161)
+	at com.j256.ormlite.stmt.StatementExecutor.query(StatementExecutor.java:202)
+	at com.j256.ormlite.stmt.StatementExecutor.queryForAll(StatementExecutor.java:118)
+	at com.j256.ormlite.dao.BaseDaoImpl.queryForAll(BaseDaoImpl.java:241)
+	at mera.DatabaseManager.getAll(DatabaseManager.java:102)
+	at Main.main(Main.java:33)
+06-19 19:55:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "val" not found [42122-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3122)
+	at org.h2.jdbc.JdbcResultSet.findColumn(JdbcResultSet.java:182)
+	at com.j256.ormlite.jdbc.JdbcDatabaseResults.findColumn(JdbcDatabaseResults.java:90)
+	at com.j256.ormlite.field.FieldType.resultToJava(FieldType.java:815)
+	at com.j256.ormlite.stmt.mapped.BaseMappedQuery.mapRow(BaseMappedQuery.java:60)
+	at com.j256.ormlite.stmt.SelectIterator.getCurrent(SelectIterator.java:270)
+	at com.j256.ormlite.stmt.SelectIterator.nextThrow(SelectIterator.java:161)
+	at com.j256.ormlite.stmt.StatementExecutor.query(StatementExecutor.java:202)
+	at com.j256.ormlite.stmt.StatementExecutor.queryForAll(StatementExecutor.java:118)
+	at com.j256.ormlite.dao.BaseDaoImpl.queryForAll(BaseDaoImpl.java:241)
+	at mera.DatabaseManager.getAll(DatabaseManager.java:102)
+	at Main.main(Main.java:33)
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO punctuation VALUES(
+	('COMMA_ENG'','),
+	('PERIOD','.'),
+	('COMMA_PER','،'),
+	('SEMI_ENG','؛'),
+	('SEMI_PER',';')
+) [21002-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.command.dml.Insert.prepare(Insert.java:266)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE FIRSTNAME(
+	ID INT(6) "; expected "FOR, UNSIGNED, NOT, NULL, AS, DEFAULT, GENERATED, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE FirstName(
+	id int(6) [42001-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "VAL[*] VARCHAR(20) "; expected "VALUES, {"; SQL statement:
+val varchar(20) [42001-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement ")"; SQL statement:
+) [42000-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE MARITALSTATUS(
+	ID INT(1) "; expected "FOR, UNSIGNED, NOT, NULL, AS, DEFAULT, GENERATED, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE MaritalStatus(
+	id int(1) [42001-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "VAL[*] VARCHAR(20) "; expected "VALUES, {"; SQL statement:
+val varchar(20) [42001-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement ")"; SQL statement:
+) [42000-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ETHNICITY(
+	ID INT(2) "; expected "FOR, UNSIGNED, NOT, NULL, AS, DEFAULT, GENERATED, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE Ethnicity(
+	id int(2) [42001-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "VAL[*] VARCHAR(20) "; expected "VALUES, {"; SQL statement:
+val varchar(20) [42001-178]
+06-19 19:57:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement ")"; SQL statement:
+) [42000-178]
+06-19 19:58:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGROY" not found; SQL statement:
+SELECT * FROM categroy WHERE category='NEP' [42102-178]
+06-19 20:07:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid value "0" for parameter "columnIndex" [90008-178]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:227)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3165)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3193)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:286)
+	at mera.DatabaseManager.initdb(DatabaseManager.java:134)
+	at Main.main(Main.java:33)
+06-19 20:07:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-178]
+06-19 20:10:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PREIFX" not found; SQL statement:
+SELECT * FROM preifx [42102-178]
+06-19 20:25:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CITY" not found; SQL statement:
+SELECT * FROM city WHERE val='اهواز' [42102-178]

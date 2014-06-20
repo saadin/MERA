@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="lib/poi-3.10-FINAL/poi-3.10-FINAL-20140208.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/sadegh/Desktop/Link to Final Project/app/package/poi-3.10-FINAL/docs/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/poi-3.10-FINAL/poi-scratchpad-3.10-FINAL-20140208.jar"/>
+	<classpathentry kind="lib" path="lib/ormlite/ormlite-core-4.48.jar" sourcepath="lib/ormlite/ormlite-core-4.48-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/MERA/lib/ormlite/ormlite-core-4.48-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/h2/h2-1.4.178.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/MERA/lib/h2/h2-1.4.178-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/ormlite/ormlite-jdbc-4.48.jar" sourcepath="lib/ormlite/ormlite-jdbc-4.48-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/MERA/lib/ormlite/ormlite-jdbc-4.48-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
