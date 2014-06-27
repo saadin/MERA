@@ -136,14 +136,15 @@ public class DatabaseManager
         ;
 		try {
 			Statement stat = conn.createStatement();
-			//stat.execute("runscript from 'init.sql'");
-			ResultSet rs = stat.executeQuery("SELECT * FROM category where category='NEP'");
-			if (rs.next()) {
-		        rs.last();
-		        System.out.println("total rows is : " + rs.getRow());
-		    } else {
-		        System.out.println("No Data");
-		    }
+			stat.execute("DROP ALL OBJECTS");
+			stat.execute("runscript from 'config/init/db.h2.sql'");
+//			ResultSet rs = stat.executeQuery("SELECT * FROM category where category='NEP'");
+//			if (rs.next()) {
+//		        rs.last();
+//		        System.out.println("total rows is : " + rs.getRow());
+//		    } else {
+//		        System.out.println("No Data");
+//		    }
 //			while (rs.next()) {
 //	            System.out.println(rs.getString("val"));
 //	        }

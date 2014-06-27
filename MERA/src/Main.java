@@ -20,17 +20,19 @@ public class Main {
 	
 	
 	public static void main(String[] args) throws IOException {
-		String dirpath = "/home/sadegh/Desktop/mr/";
-		String fname = "record1.doc";
-		InputStream is = new FileInputStream(dirpath+fname);
-		WordExtractor we = new WordExtractor(is);
-		
-		PrintWriter pw = new PrintWriter(dirpath+"output.txt");
-		pw.println(we.getParagraphText()[1]);
-		pw.close();
+//		String dirpath = "/home/sadegh/Desktop/mr/";
+//		String fname = "record1.doc";
+//		InputStream is = new FileInputStream(dirpath+fname);
+//		WordExtractor we = new WordExtractor(is);
+//		
+//		PrintWriter pw = new PrintWriter(dirpath+"output.txt");
+//		pw.println(we.getParagraphText()[1]);
+//		pw.close();
 		
 		DatabaseManager dbm = DatabaseManager.getInstance();
-		dbm.entityExists("اهواز", "city");
+		
+		boolean res = dbm.entityExists("خر", "firstname");
+		System.out.println(res);
 //		dbm.initdb();
 //		List<Category> lp = dbm.getAll(Category.class);
 //		for(Category p : lp)
