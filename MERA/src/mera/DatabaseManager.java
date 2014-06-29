@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import mera.data.Pattern;
+
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -84,6 +86,22 @@ public class DatabaseManager
 		super.finalize();
 	}
 	
+	protected <T> void insertAll(T[] items)
+	{
+		Dao<T, String> dao;
+		try {
+			dao = DaoManager.createDao(connectionSource, items[0].getClass());
+			for(T item : items)
+			{
+				dao.create(item);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public <T> List<T> getAll(Class<T> cl)
 	{
 		Dao<T, String> dao;
@@ -132,27 +150,39 @@ public class DatabaseManager
 	
 	public void initdb()
 	{
-//		disconnect();
-        ;
 		try {
 			Statement stat = conn.createStatement();
 			stat.execute("DROP ALL OBJECTS");
 			stat.execute("runscript from 'config/init/db.h2.sql'");
-//			ResultSet rs = stat.executeQuery("SELECT * FROM category where category='NEP'");
-//			if (rs.next()) {
-//		        rs.last();
-//		        System.out.println("total rows is : " + rs.getRow());
-//		    } else {
-//		        System.out.println("No Data");
-//		    }
-//			while (rs.next()) {
-//	            System.out.println(rs.getString("val"));
-//	        }
-//			conn.close();
+			
+			initPatterns();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Initiating DB failed");
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
-
+	
+	public void initPatterns()
+	{
+		insertAll(getPatternsFromFile("CERTAIN"));
+		insertAll(getPatternsFromFile("POSSIBLE"));
+		insertAll(getPatternsFromFile("IMPOSSIBLE"));
+	}
+	
+	private Pattern[] getPatternsFromFile(String type)
+	{
+		String[] lines = FileInterface.getInstance().getLines("config/init/patterns/"+type.toLowerCase()+"_patterns");
+		Pattern[] p = new Pattern[lines.length];
+		for(int i = 0 ; i < lines.length ; i++)
+		{
+			p[i] = new Pattern(lines[i], type);
+		}
+			
+		
+		return p;
+	}
+	
 }

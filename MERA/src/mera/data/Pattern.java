@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName="pattern")
 public class Pattern 
 {
-	@DatabaseField(id=true)
+	@DatabaseField(generatedId=true)
 	int id;
 	@DatabaseField
 	String val;
@@ -15,6 +15,12 @@ public class Pattern
 	
 	public Pattern()
 	{
+	}
+	
+	public Pattern(String val, String type)
+	{
+		this.val = val;
+		this.type = type;
 	}
 	
 	public String toString()

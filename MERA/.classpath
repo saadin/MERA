@@ -23,5 +23,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/MERA/lib/ormlite/ormlite-jdbc-4.48-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/laf/seaglasslookandfeel-0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
