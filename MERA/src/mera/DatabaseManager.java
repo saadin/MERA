@@ -2,12 +2,9 @@ package mera;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -119,6 +116,23 @@ public class DatabaseManager
 		try {
 			Statement stat = conn.createStatement();
 			ResultSet rs = stat.executeQuery("SELECT * FROM "+ tableName + " WHERE val='" + entity +"'");
+			if (rs.next()) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean entityBeginsWith(String entity, String tableName)
+	{
+		try {
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("SELECT * FROM "+ tableName + " WHERE val LIKE'" + entity +"%'");
 			if (rs.next()) {
 		        return true;
 		    } else {

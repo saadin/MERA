@@ -23,6 +23,15 @@ public class Pattern
 		this.type = type;
 	}
 	
+	public String getValue()
+	{
+		return val;
+	}
+	public String getType()
+	{
+		return type;
+	}
+	
 	public String toString()
 	{
 		return "["+type+"]"+val;
