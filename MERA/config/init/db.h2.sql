@@ -90,7 +90,7 @@ INSERT INTO prefix (val, category) VALUES
 
 INSERT INTO suffix (val, category) VALUES
 	('ساله','NEA'),
-	('فرزند','NEA')
+	('فرزند','NEK')
 ;
 
 INSERT INTO punctuation VALUES

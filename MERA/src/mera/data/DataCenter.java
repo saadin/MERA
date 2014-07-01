@@ -13,7 +13,6 @@ public class DataCenter
 	private ArrayList<Pattern> pattern;
 	private ArrayList<Punctuation> punc;
 	
-	
 	private DataCenter()
 	{
 		DatabaseManager dbm = DatabaseManager.getInstance();
@@ -24,12 +23,14 @@ public class DataCenter
 		pattern = new ArrayList<Pattern>();
 		punc = new ArrayList<Punctuation>();
 		
+		category.addAll(dbm.getAll(Category.class));
 		suffix.addAll(dbm.getAll(Suffix.class));
 		prefix.addAll(dbm.getAll(Prefix.class));
 		pattern.addAll(dbm.getAll(Pattern.class));
 		punc.addAll(dbm.getAll(Punctuation.class));
 		
 	}
+	
 	
 	public ArrayList<Category> getCategories()
 	{
@@ -122,8 +123,18 @@ public class DataCenter
 		return punc;
 	}
 	
+	public Punctuation getPunctuation(String name)
+	{
+		for(Punctuation p : punc)
+		{
+			if(p.getName().equals("name"))return p;
+		}
+		return null;
+	}
+	
 	public Category getCategoryByName(String name)
 	{
+		if(name.equals("OTH"))return Category.other;
 		for(Category c : category)
 		{
 			if(c.getName().equals(name))return c;

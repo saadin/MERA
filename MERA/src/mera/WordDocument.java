@@ -1,6 +1,9 @@
 package mera;
 
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
@@ -13,6 +16,7 @@ public class WordDocument
 //	HeaderStories header;
 	public WordDocument(String path)
 	{
+		this.path = path;
 		try {
 			doc = new HWPFDocument(FileInterface.getInstance().getInputStream(path));
 			we = new WordExtractor(doc);
@@ -56,9 +60,16 @@ public class WordDocument
 	
 	public boolean writeDocument()
 	{
-		String newPath = path.substring(0,path.lastIndexOf("."))+"-anonymized"+path.substring(path.lastIndexOf(","));
+		String newPath = path.substring(0,path.lastIndexOf("."))+"-anonymized"+path.substring(path.lastIndexOf("."));
 		
-		FileInterface.getInstance().openOutputStream(newPath);
+		OutputStream os = FileInterface.getInstance().openOutputStream(newPath);
+		try {
+			doc.write(os);
+			return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 }

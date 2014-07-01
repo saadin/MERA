@@ -2,6 +2,7 @@ package mera.ner;
 
 import mera.DatabaseManager;
 import mera.data.DataCenter;
+import mera.data.Punctuation;
 
 public class PatternState 
 {
@@ -51,33 +52,58 @@ public class PatternState
 	{
 		boolean isNumber = isNumber(token);
 		
+		if(!category.equals("OTH") && type.equals("ENT") && DataCenter.getInstance().getCategoryByName(category).getType().equals("number") && !isNumber)
+			return MatchType.TYPE_NO_MATCH;
 		//check if this is an entity state and type of entity differs
-		if(type.equals("ENT"))
+		if(type.equals("ENT") && optional.equals("ANY"))
 		{
-			if(DataCenter.getInstance().getCategoryByName(category).getType().equals("number") && !isNumber)
-				return MatchType.TYPE_NO_MATCH;
-			if(optional.equals("ANY"))
+			
+			if(isNumber)
+				return MatchType.MATCH_WHOLE;
+			else
 				return MatchType.LOOK_FOR_NEXT;
-				
 		}
 		if(checkWholeMatch(token))return MatchType.MATCH_WHOLE;
 		if(checkPartialMatch(token))return MatchType.MATCH_PARTIAL;
-		
-		
 		
 		return MatchType.NO_MATCH;
 	}
 	
 	private boolean checkWholeMatch(String token)
 	{
-		if(
-				type.equals("PRE") && DataCenter.getInstance().prefixExists(category, token)
-				|| type.equals("SUF") && DataCenter.getInstance().suffixExists(category, token)
-				|| type.equals("ENT") && optional.equals("COL") 
-						&& DatabaseManager.getInstance().entityExists(token, DataCenter.getInstance().getCategoryByName(category).getCollectionTable())
-				)
+//		if(
+//				type.equals("PRE") && DataCenter.getInstance().prefixExists(category, token)
+//				|| type.equals("SUF") && DataCenter.getInstance().suffixExists(category, token)
+//				|| type.equals("ENT") && optional.equals("COL") 
+//						&& DatabaseManager.getInstance().entityExists(token, DataCenter.getInstance().getCategoryByName(category).getCollectionTable())
+//				)
+//		{
+//			return true;
+//		}
+		String tableName="";
+		String cat = "";
+		if(type.equals("SUF")){
+			tableName = "suffix";
+			cat = category;
+		}
+		else if(type.equals("PRE")){
+			tableName = "prefix";
+			cat = category;
+		}
+		else if(type.equals("PUN"))tableName = "punctuation";
+		else if(type.equals("ENT")){
+			tableName = DataCenter.getInstance().getCategoryByName(category).getCollectionTable();
+		}
+		else
+			tableName="";
+		if(optional.equals("COL")) 
 		{
-			return true;
+			return DatabaseManager.getInstance().entityExistsWhereCategory(token, tableName,cat);
+		}
+		if(type.equals("PUN"))
+		{
+			Punctuation p = DataCenter.getInstance().getPunctuation(optional);
+			if(p!=null)return p.equals(token);
 		}
 		
 		return false;
@@ -118,6 +144,11 @@ public class PatternState
 		{
 			return false;
 		}
+	}
+	
+	public String toString()
+	{
+		return "<"+type+":"+category+":"+optional+":"+min+","+max+">";
 	}
 	
 }

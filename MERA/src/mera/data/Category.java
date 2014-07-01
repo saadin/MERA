@@ -21,13 +21,19 @@ public class Category
 	@DatabaseField
 	String description;
 	
-	public static Category other = new Category("OTH","دیگر");
+	public static Category other = new Category("","OTH","دیگر");
 	
 	public Category()
 	{
 	}
 	public Category(String type, String desc)
 	{
+		this.type = type;
+		this.description=desc;
+	}
+	public Category(String name, String type, String desc)
+	{
+		this.category = name;
 		this.type = type;
 		this.description=desc;
 	}
@@ -53,6 +59,24 @@ public class Category
 		return description;
 	}
 	
+	
+	public static String getAgeEquivalent(int age)
+	{
+		if(age<2) return "طفل";
+		if(age<12) return "کودک";
+		if(age<18) return "نوجوان";
+		if(age<30) return "جوان";
+		if(age<50) return "میانسال";
+		if(age<65) return "مسن";
+		return "پیر";
+	}
+	public static String getKidsEquivalent(int kids)
+	{
+		if(kids<=2) return "تعداد کم";
+		if(kids<=4) return "تعداد متوسط";
+		if(kids<=8) return "تعداد زیاد";
+		return "تعداد خیلی زیاد";
+	}
 	
 	public String toString()
 	{

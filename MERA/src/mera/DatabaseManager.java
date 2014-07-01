@@ -127,6 +127,25 @@ public class DatabaseManager
 		}
 		return false;
 	}
+	public boolean entityExistsWhereCategory(String entity, String tableName, String category)
+	{
+		try {
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery(
+					"SELECT * FROM "+ tableName + " WHERE val='" + entity +"'" + (category.equals("")?"":" AND category='"+category+"'"));
+			if (rs.next()) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
 	
 	public boolean entityBeginsWith(String entity, String tableName)
 	{
